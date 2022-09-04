@@ -35,9 +35,11 @@ const loadNewsCategoriesDetail = (idNewsCategories) => {
 const displayLoadNewsCategoriesDetail = newsCategoriesDetail => {
     // console.log(newsCategoriesDetail);
     const itemsFounded = document.getElementById('input-flied');
-    itemsFounded.value = `${newsCategoriesDetail.length}  items found for this category`;
+    itemsFounded.value = `${newsCategoriesDetail.length !== 0 ? newsCategoriesDetail.length : 'No news'}  items found for this category`;
     const detailContainer = document.getElementById('detail-container');
     detailContainer.innerHTML = '';
+
+    newsCategoriesDetail.sort((a, b) => b.total_view - a.total_view);
 
     newsCategoriesDetail.forEach(newsDetails => {
         // console.log(newsDetails._id);
@@ -54,7 +56,7 @@ const displayLoadNewsCategoriesDetail = newsCategoriesDetail => {
                                 <div class="card-body mt-4 me-4 mb-4">
                                     <h5 class="card-title fw-bold">${newsDetails.title}</h5>
                                     <p class="card-text">${newsDetails.details.slice(0, 650)}...</p>
-                                    <div class= "d-flex justify-content-between align-items-center"> 
+                                    <div class= "d-flex justify-content-between align-items-md-center flex-wrap"> 
                                         <div class="d-flex align-items-center">
                                             <img src="${newsDetails.author.img}" class="author-img">
                                             <div>
