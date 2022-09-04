@@ -58,11 +58,11 @@ const displayLoadNewsCategoriesDetail = newsCategoriesDetail => {
                                         <div class="d-flex align-items-center">
                                             <img src="${newsDetails.author.img}" class="author-img">
                                             <div>
-                                                <p class="fw-bold">${newsDetails.author.name} </p>
-                                                <p> ${newsDetails.author.published_date}</p>
+                                                <p class="fw-bold">${newsDetails.author.name ? newsDetails.author.name : 'Author Name Not Founded'} </p>
+                                                <p> ${newsDetails.author.published_date ? newsDetails.author.published_date : 'Published Date Not Founded'}</p>
                                             </div>
                                         </div>
-                                        <div> <p class="fw-bold"> Total View: ${newsDetails.total_view}</p> </div>
+                                        <div> <p class="fw-bold"> Total View: ${newsDetails.total_view ? newsDetails.total_view : 'Not Founded'}</p> </div>
                                         <div> <p class="fw-bold"> Rating: ${newsDetails.rating.number}</p> </div>
                                         <div>   
                                             <button type="button" class="btn btn-outline-primary" onclick="loadModal('${newsDetails._id}')" data-bs-toggle="modal" data-bs-target="#NewsDetailsModal"><i class="fa-solid fa-arrow-right" ></i></button>
@@ -96,11 +96,11 @@ const displayLoadModal = newsIdDetails => {
     newsDetails.innerHTML = `
         <img src="${newsIdDetails.image_url}" class="modal-img" alt="">
         <p>${newsIdDetails.details.slice(0, 300)}</p>
-        <p class="fw-bold">Author Name: ${newsIdDetails.author.name} </p>
-        <p>published Date: ${newsIdDetails.author.published_date} </p>
-        <p class="fw-bold">Total View: ${newsIdDetails.total_view} M </p>
-        <p>Rating: ${newsIdDetails.rating.number} star </p>
-    `
+        <p class="fw-bold">Author Name: ${newsIdDetails.author.name ? newsIdDetails.author.name : ' Not Founded'} </p>
+        <p>published Date: ${newsIdDetails.author.published_date ? newsIdDetails.author.published_date : ' Not Founded'} </p>
+        <p class="fw-bold">Total View: ${newsIdDetails.total_view ? newsIdDetails.total_view : ' Not Founded'} </p>
+        <p>Rating: ${newsIdDetails.rating.number} </p>
+`
 
 }
 
