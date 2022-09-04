@@ -32,14 +32,14 @@ const loadNewsCategoriesDetail = (idNewsCategories) => {
 }
 
 const displayLoadNewsCategoriesDetail = newsCategoriesDetail => {
-    console.log(newsCategoriesDetail);
+    // console.log(newsCategoriesDetail);
     const itemsFounded = document.getElementById('input-flied');
     itemsFounded.value = `${newsCategoriesDetail.length}  items found for this category`;
     const detailContainer = document.getElementById('detail-container');
     detailContainer.innerHTML = '';
 
     newsCategoriesDetail.forEach(newsDetails => {
-        // console.log(newsDetails.length);
+        // console.log(newsDetails._id);
 
         const newsCategoriesDetailDiv = document.createElement('div');
         newsCategoriesDetailDiv.classList.add('col');
@@ -63,7 +63,9 @@ const displayLoadNewsCategoriesDetail = newsCategoriesDetail => {
                                         </div>
                                         <div> <p class="fw-bold"> Total View: ${newsDetails.total_view}</p> </div>
                                         <div> <p class="fw-bold"> Rating: ${newsDetails.rating.number}</p> </div>
-                                        <div> <i class="fa-solid fa-arrow-right"></i> </div>
+                                        <div>   
+                                            <button type="button" class="btn btn-outline-primary" onclick="loadModal('${newsDetails._id}')" data-bs-toggle="modal" data-bs-target="#NewsDetailsModal"><i class="fa-solid fa-arrow-right" ></i></button>
+                                        </div>
                                     </div>
                                     
                                 </div>
@@ -74,6 +76,30 @@ const displayLoadNewsCategoriesDetail = newsCategoriesDetail => {
         detailContainer.appendChild(newsCategoriesDetailDiv);
     });
     toggleSpinner(false);
+
+}
+
+const loadModal = (newsId) => {
+    const url = `https://openapi.programming-hero.com/api/news/${newsId}`
+    fetch(url)
+        .then(response => response.json())
+        .then(detail => displayLoadModal(detail.data[0]));
+
+}
+
+const displayLoadModal = newsIdDetails => {
+    console.log(newsIdDetails.title);
+    const modalTitle = document.getElementById('NewsDetailsModalLabel')
+    modalTitle.innerText = newsIdDetails.title;
+    const newsDetails = document.getElementById('news-details');
+    newsDetails.innerHTML = `
+        <img src="${newsIdDetails.image_url}" class="modal-img" alt="">
+        <p>${newsIdDetails.details.slice(0, 300)}</p>
+        <p class="fw-bold">Author Name: ${newsIdDetails.author.name} </p>
+        <p>published Date: ${newsIdDetails.author.published_date} </p>
+        <p class="fw-bold">Total View: ${newsIdDetails.total_view} M </p>
+        <p>Rating: ${newsIdDetails.rating.number} star </p>
+    `
 
 }
 
