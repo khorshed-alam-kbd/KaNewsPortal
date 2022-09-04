@@ -22,11 +22,11 @@
         <!-- navbar section start -->
         <section class=" my-3">
             <nav class="navbar navbar-expand-lg">
-                <div class="container">
+                <div class="container-fluid ">
                     <a class="navbar-brand ms-4" href="index.html">
                         <h2 class="fw-bold text-success">Ka<span class="text-danger">News</span>Portal</h2>
                     </a>
-                    <div class="d-flex justify-content-end me-4">
+                    <div class="d-flex justify-content-end me-4 ">
                         <ul class=" navbar-nav me-5 mb-2 mb-lg-0">
                             <li class="nav-item">
                                 <a class="nav-link active" aria-current="page" href="index.html">News</a>
@@ -63,6 +63,28 @@
                 <input class="form-control form-control-lg" id="input-flied" type="text" placeholder=""
                     aria-label=".form-control-lg example">
             </div>
+        </section>
+
+        <section class="container">
+            <div class="d-flex justify-content-between">
+                <div class="dropdown d-flex mb-5">
+                    <p class="me-2"> Sort By View:</p>
+                    <a class="btn bg-white text-muted dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                        aria-expanded="false">
+                        Default
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="#">Default</a></li>
+                        <li><a class="dropdown-item" href="#">Views</a></li>
+                        <li><a class="dropdown-item" href="#">Time</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <button type="button" class="btn btn-outline-primary">Today’s Pick </button>
+                    <button type="button" class="btn btn-outline-primary">Trending</button>
+                </div>
+            </div>
+
         </section>
 
         <section class="container">
